@@ -8,18 +8,18 @@ import androidx.room.Query
 @Dao
 interface ArticlesDao {
 
-    @Query("SELECT * FROM Articles")
-    fun getAll(): List<Articles>
+    @Query("SELECT * FROM Article")
+    fun getAll(): List<Article>
 
-    @Query("SELECT * FROM Articles WHERE uid IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<Articles>
+    @Query("SELECT * FROM Article WHERE uid IN (:userIds)")
+    fun loadAllByIds(userIds: IntArray): List<Article>
 
     @Insert
-    fun insertAll(vararg article: Articles)
+    fun insertAll(vararg article: Article)
 
     @Delete
-    fun delete(article: Articles)
+    fun delete(article: Article)
 
-    @Query("DELETE FROM Articles")
+    @Query("DELETE FROM Article")
     fun nukeTable()
 }

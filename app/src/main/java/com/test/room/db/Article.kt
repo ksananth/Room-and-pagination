@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Articles(
+data class Article(
     @PrimaryKey val uid: Int,
     @ColumnInfo(name = "author") val author: String,
     @ColumnInfo(name = "title") val title: String,
