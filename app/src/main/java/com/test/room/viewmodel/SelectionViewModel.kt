@@ -4,16 +4,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.test.room.R
-import com.test.room.db.AppDatabase
-import kotlinx.coroutines.Dispatchers
+import com.test.room.repository.ArticleRepository
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-class SelectionViewModel(private val db: AppDatabase) : ViewModel() {
+class SelectionViewModel(private val repository: ArticleRepository) : ViewModel() {
+
     init {
         viewModelScope.launch(IO) {
-            db.userDao().nukeTable()
+            repository.clearArticles()
         }
     }
 

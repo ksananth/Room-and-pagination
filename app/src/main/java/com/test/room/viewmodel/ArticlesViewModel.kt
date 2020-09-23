@@ -1,6 +1,6 @@
 package com.test.room.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.test.room.db.AppDatabase
+import com.test.room.repository.RoomArticleRepository
 
-class ArticlesViewModel(db: AppDatabase) : ViewModel()
+class ArticlesViewModel(db: RoomArticleRepository) : ViewModel()

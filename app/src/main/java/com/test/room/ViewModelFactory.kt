@@ -6,6 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import com.test.room.db.AppDatabase
+import com.test.room.repository.RoomArticleRepository
 import com.test.room.viewmodel.ArticlesViewModel
 import com.test.room.viewmodel.SelectionViewModel
 
@@ -20,9 +21,11 @@ class ViewModelFactory(
         handle: SavedStateHandle
     ): T {
         val db = AppDatabase.create(context)
+        val repository = RoomArticleRepository(db)
+
         return when (modelClass) {
-            ArticlesViewModel::class.java -> ArticlesViewModel(db)
-            SelectionViewModel::class.java -> SelectionViewModel(db)
+            ArticlesViewModel::class.java -> ArticlesViewModel(repository)
+            SelectionViewModel::class.java -> SelectionViewModel(repository)
             else -> throw IllegalArgumentException("ViewModel Not Found")
         } as T
     }
