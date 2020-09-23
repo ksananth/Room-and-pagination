@@ -3,12 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
 
-    <ImageView
-        android:id="@+id/image"
+    <View
+        android:id="@+id/articleImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:background="@android:color/holo_green_light"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,7 +23,7 @@
         android:layout_marginEnd="10dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image"
+        app:layout_constraintStart_toEndOf="@+id/articleImage"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Is It Even Possible to Play 30 Sports Simultaneously?’" />
 
@@ -33,7 +35,7 @@
         android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image"
+        app:layout_constraintStart_toEndOf="@+id/articleImage"
         app:layout_constraintTop_toBottomOf="@+id/title"
         tools:text="Is It Even Possible to Play 30 Sports Simultaneously?’" />
 </androidx.constraintlayout.widget.ConstraintLayout>
