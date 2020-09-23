@@ -10,7 +10,7 @@ import com.test.room.viewmodel.ArticlesViewModel
 import com.test.room.viewmodel.SelectionViewModel
 
 class ViewModelFactory(
-    private val owner: SavedStateRegistryOwner,
+    owner: SavedStateRegistryOwner,
     private val context: Context
 ) : AbstractSavedStateViewModelFactory(owner, null) {
 

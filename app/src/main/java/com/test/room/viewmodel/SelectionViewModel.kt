@@ -5,10 +5,11 @@ import androidx.navigation.NavController
 import com.test.room.R
 import com.test.room.db.AppDatabase
 
-class SelectionViewModel(private val db: AppDatabase) : ViewModel() {
+class SelectionViewModel(db: AppDatabase) : ViewModel() {
     init {
         db.userDao().nukeTable()
     }
+
     fun roomDatabaseSelected(findNavController: NavController) {
         findNavController.navigate(R.id.action_selectionFragment_to_roomFragment)
 
