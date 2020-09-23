@@ -20,8 +20,11 @@ interface ArticlesDao {
     fun findByName(first: String, last: String): Articles
 
     @Insert
-    fun insertAll(vararg users: Articles)
+    fun insertAll(vararg article: Articles)
 
     @Delete
-    fun delete(user: Articles)
+    fun delete(article: Articles)
+
+    @Query("DELETE FROM Articles")
+    fun nukeTable()
 }
