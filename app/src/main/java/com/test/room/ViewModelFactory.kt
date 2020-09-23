@@ -19,7 +19,7 @@ class ViewModelFactory(
         modelClass: Class<T>,
         handle: SavedStateHandle
     ): T {
-        val db = AppDatabase.create(context, false)
+        val db = AppDatabase.create(context)
         return when (modelClass) {
             ArticlesViewModel::class.java -> ArticlesViewModel(db)
             SelectionViewModel::class.java -> SelectionViewModel(db)

@@ -10,7 +10,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): ArticlesDao
 
     companion object {
-        fun create(context: Context, useInMemory: Boolean): AppDatabase {
+        fun create(context: Context): AppDatabase {
             val databaseBuilder =
                 Room.databaseBuilder(context, AppDatabase::class.java, "articles.db")
             return databaseBuilder
