@@ -9,6 +9,7 @@ import com.test.room.ioThread
 
 @Database(entities = [Article::class], version = 3)
 abstract class AppDatabase : RoomDatabase() {
+
     abstract fun articlesDao(): ArticlesDao
 
     companion object {

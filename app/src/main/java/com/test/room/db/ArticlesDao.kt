@@ -12,9 +12,6 @@ interface ArticlesDao {
     @Query("SELECT * FROM Article")
     fun getAll(): PagingSource<Int, Article>
 
-    @Query("SELECT * FROM Article WHERE uid IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): PagingSource<Int, Article>
-
     @Insert
     fun insertAll(vararg article: Article)
 

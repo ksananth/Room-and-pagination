@@ -11,11 +11,11 @@ class ArticleViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false)
 ) {
 
-    private val nameView = itemView.findViewById<TextView>(R.id.title)
+    private val title = itemView.findViewById<TextView>(R.id.title)
     var article: Article? = null
 
     fun bindTo(article: Article?) {
         this.article = article
-        nameView.text = article?.title
+        title.text = article?.title
     }
 }

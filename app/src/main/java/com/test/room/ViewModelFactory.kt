@@ -25,7 +25,7 @@ class ViewModelFactory(
 
         return when (modelClass) {
             ArticlesViewModel::class.java -> ArticlesViewModel(repository)
-            SelectionViewModel::class.java -> SelectionViewModel(repository)
+            SelectionViewModel::class.java -> SelectionViewModel()
             else -> throw IllegalArgumentException("ViewModel Not Found")
         } as T
     }

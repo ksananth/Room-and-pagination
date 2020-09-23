@@ -13,6 +13,7 @@ import com.test.room.adapter.ArticleAdapter
 import com.test.room.db.Article
 import com.test.room.viewmodel.ArticlesViewModel
 import kotlinx.android.synthetic.main.fragment_list.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
@@ -28,18 +29,13 @@ class RoomFragment() : Fragment(R.layout.fragment_list) {
 
         factory = ViewModelFactory(this, requireContext())
         viewModel = ViewModelProvider(this, factory)[ArticlesViewModel::class.java]
-        viewModel.articles().observe(this, Observer { this.updateList(it) })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recycleView.adapter = adapter
-        viewModel.loadArticles()
-    }
-
-    private fun updateList(it: Flow<PagingData<Article>>) {
         lifecycleScope.launch {
-            it.collectLatest { adapter.submitData(it) }
+            viewModel.articles.collectLatest { adapter.submitData(it) }
         }
     }
 }
