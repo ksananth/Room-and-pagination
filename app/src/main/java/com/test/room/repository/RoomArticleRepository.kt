@@ -11,11 +11,11 @@ class RoomArticleRepository(private val db: AppDatabase) : ArticleRepository {
 
     override fun getArticles(): Flow<PagingData<Article>> =
         Pager(config = PagingConfig(pageSize, enablePlaceholders = true, maxSize = maxSize)) {
-            db.userDao().getAll()
+            db.articlesDao().getAll()
         }.flow
 
     override fun clearArticles() {
-        db.userDao().nukeTable()
+        db.articlesDao().nukeTable()
     }
 
     companion object {

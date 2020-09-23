@@ -14,6 +14,7 @@ import com.test.room.db.Article
 import com.test.room.viewmodel.ArticlesViewModel
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
@@ -38,7 +39,7 @@ class RoomFragment() : Fragment(R.layout.fragment_list) {
 
     private fun updateList(it: Flow<PagingData<Article>>) {
         lifecycleScope.launch {
-            adapter.submitData(it.first())
+            it.collectLatest { adapter.submitData(it) }
         }
     }
 }

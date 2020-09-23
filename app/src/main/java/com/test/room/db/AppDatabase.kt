@@ -4,10 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.test.room.ioThread
 
 @Database(entities = [Article::class], version = 3)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun userDao(): ArticlesDao
+    abstract fun articlesDao(): ArticlesDao
 
     companion object {
         fun create(context: Context): AppDatabase {
@@ -15,7 +17,31 @@ abstract class AppDatabase : RoomDatabase() {
                 Room.databaseBuilder(context, AppDatabase::class.java, "articles.db")
             return databaseBuilder
                 .fallbackToDestructiveMigration()
-                .build()
+                .addCallback(object : RoomDatabase.Callback() {
+                    override fun onCreate(db: SupportSQLiteDatabase) {
+                        fillInDb(context.applicationContext)
+                    }
+                }).build()
+        }
+
+        private fun fillInDb(context: Context) {
+            // inserts in Room are executed on the current thread, so we insert in the background
+            ioThread {
+                create(context).articlesDao().insert(
+                    DATA.map {
+                        Article(
+                            uid = it.uid,
+                            author = it.author,
+                            title = it.title,
+                            urlToImage = it.urlToImage
+                        )
+                    })
+            }
         }
     }
 }
+
+
+private val DATA = arrayListOf(
+    Article(1, "Ananth", "Life of Pie", "https://img.icons8.com/material/4ac144/256/user-male.png")
+)

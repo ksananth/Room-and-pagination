@@ -23,4 +23,7 @@ interface ArticlesDao {
 
     @Query("DELETE FROM Article")
     fun nukeTable()
+
+    @Insert
+    fun insert(map: List<Article>)
 }
