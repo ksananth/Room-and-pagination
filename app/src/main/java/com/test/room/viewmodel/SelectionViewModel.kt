@@ -1,4 +1,4 @@
-package com.test.room.model
+package com.test.room.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
