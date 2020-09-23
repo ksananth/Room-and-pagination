@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ROOM</string>
+    <string name="from_api">From API</string>
+    <string name="from_room_database">From Room database</string>
 </resources>

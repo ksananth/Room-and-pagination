@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_navigation">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/selectionFragment">
 
+    <fragment
+        android:id="@+id/selectionFragment"
+        android:name="com.test.room.view.SelectionFragment"
+        android:label="SelectionFragment"
+        tools:layout="@layout/fragment_selection" >
+        <action
+            android:id="@+id/action_selectionFragment_to_apiFragment"
+            app:destination="@id/apiFragment" />
+        <action
+            android:id="@+id/action_selectionFragment_to_roomFragment"
+            app:destination="@id/roomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/apiFragment"
+        android:name="com.test.room.view.ApiFragment"
+        android:label="ApiFragment"
+        tools:layout="@layout/fragment_list" />
+    <fragment
+        android:id="@+id/roomFragment"
+        android:name="com.test.room.view.RoomFragment"
+        android:label="RoomFragment"
+        tools:layout="@layout/fragment_list" />
 </navigation>
