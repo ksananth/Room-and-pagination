@@ -31,6 +31,9 @@ class ApiFragment : Fragment(R.layout.fragment_list) {
         adapter = ApiArticleAdapter()
         articleRecycleView.adapter = adapter
         viewModel.getArticles().observe(viewLifecycleOwner, Observer { this.updateList(it) })
+        viewModel.progressBarVisibility.observe(viewLifecycleOwner, Observer {
+            progressBar.visibility = it
+        })
 
         lifecycleScope.launch {
             viewModel.onViewCreated()
