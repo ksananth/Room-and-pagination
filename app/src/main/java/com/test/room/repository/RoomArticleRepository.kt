@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
 
 class RoomArticleRepository(
     private val db: AppDatabase
-) : ArticleRepository {
+)  {
 
-    override fun getArticles(): Flow<PagingData<Article>> =
+    fun getArticles(): Flow<PagingData<Article>> =
         Pager(config = PagingConfig(pageSize, enablePlaceholders = true, maxSize = maxSize)) {
             db.articlesDao().getAll()
         }.flow

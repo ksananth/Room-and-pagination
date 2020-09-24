@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import com.test.room.api.ArticleApi
 import com.test.room.db.AppDatabase
+import com.test.room.repository.ApiArticleRepository
 import com.test.room.repository.RoomArticleRepository
 import com.test.room.viewmodel.ArticlesViewModel
 import com.test.room.viewmodel.SelectionViewModel
@@ -23,10 +24,12 @@ class ViewModelFactory(
     ): T {
         val db by lazy { AppDatabase.create(context) }
         val api by lazy { ArticleApi.create() }
-        val repository = RoomArticleRepository(db)
+
+        val roomRepository = RoomArticleRepository(db)
+        val apiRepository = ApiArticleRepository(api)
 
         return when (modelClass) {
-            ArticlesViewModel::class.java -> ArticlesViewModel(repository)
+            ArticlesViewModel::class.java -> ArticlesViewModel(roomRepository)
             SelectionViewModel::class.java -> SelectionViewModel()
             else -> throw IllegalArgumentException("ViewModel Not Found")
         } as T
