@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.test.room.ioThread
 
-@Database(entities = [Article::class], version = 3)
+@Database(entities = [Article::class], version = 4)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun articlesDao(): ArticlesDao
@@ -21,6 +21,7 @@ abstract class AppDatabase : RoomDatabase() {
             if (instance == null) {
                 instance = Room.databaseBuilder(context.applicationContext,
                     AppDatabase::class.java, "AppDatabase")
+                    .fallbackToDestructiveMigration()
                     .addCallback(object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             fillInDb(context.applicationContext)
