@@ -13,17 +13,23 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun articlesDao(): ArticlesDao
 
     companion object {
+
+        private var instance: AppDatabase? = null
+
+        @Synchronized
         fun create(context: Context): AppDatabase {
-            val databaseBuilder =
-                Room.databaseBuilder(context, AppDatabase::class.java, "articles.db")
-            return databaseBuilder
-                .fallbackToDestructiveMigration()
-                .addCallback(object : RoomDatabase.Callback() {
-                    override fun onCreate(db: SupportSQLiteDatabase) {
-                        fillInDb(context.applicationContext)
-                    }
-                }).build()
+            if (instance == null) {
+                instance = Room.databaseBuilder(context.applicationContext,
+                    AppDatabase::class.java, "AppDatabase")
+                    .addCallback(object : RoomDatabase.Callback() {
+                        override fun onCreate(db: SupportSQLiteDatabase) {
+                            fillInDb(context.applicationContext)
+                        }
+                    }).build()
+            }
+            return instance!!
         }
+
 
         private fun fillInDb(context: Context) {
             // inserts in Room are executed on the current thread, so we insert in the background
