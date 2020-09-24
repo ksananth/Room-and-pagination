@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.test.room.db.Article
 
-class ApiArticleAdapter(private val list: List<Article> = emptyList()) :
+class ApiArticleAdapter(private var list: List<Article> = emptyList()) :
     RecyclerView.Adapter<ArticleViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder =
@@ -14,5 +14,10 @@ class ApiArticleAdapter(private val list: List<Article> = emptyList()) :
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         holder.bindTo(list[position])
+    }
+
+    fun updateList(updatedList: List<Article>) {
+        list =updatedList
+        notifyDataSetChanged()
     }
 }
