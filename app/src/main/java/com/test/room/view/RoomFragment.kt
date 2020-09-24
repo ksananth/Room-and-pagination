@@ -29,8 +29,7 @@ class RoomFragment() : Fragment(R.layout.fragment_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = ArticleAdapter()
-        articleList.adapter = adapter
-        articleList.layoutManager = LinearLayoutManager(context)
+        articleRecycleView.adapter = adapter
         lifecycleScope.launch {
             viewModel.articles.collectLatest { adapter.submitData(it) }
         }
