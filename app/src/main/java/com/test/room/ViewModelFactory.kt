@@ -10,6 +10,7 @@ import com.test.room.db.AppDatabase
 import com.test.room.repository.ApiArticleRepository
 import com.test.room.repository.RoomArticleRepository
 import com.test.room.viewmodel.ArticlesViewModel
+import com.test.room.viewmodel.ApiArticlesViewModel
 import com.test.room.viewmodel.SelectionViewModel
 
 class ViewModelFactory(
@@ -30,6 +31,7 @@ class ViewModelFactory(
 
         return when (modelClass) {
             ArticlesViewModel::class.java -> ArticlesViewModel(roomRepository)
+            ApiArticlesViewModel::class.java -> ApiArticlesViewModel(apiRepository)
             SelectionViewModel::class.java -> SelectionViewModel()
             else -> throw IllegalArgumentException("ViewModel Not Found")
         } as T
