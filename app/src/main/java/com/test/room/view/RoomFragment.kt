@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 class RoomFragment() : Fragment(R.layout.fragment_list) {
     private lateinit var factory: ViewModelFactory
     private lateinit var viewModel: ArticlesViewModel
-    private val adapter = ArticleAdapter()
+    private lateinit var adapter :ArticleAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +27,7 @@ class RoomFragment() : Fragment(R.layout.fragment_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        adapter = ArticleAdapter()
         articleList.adapter = adapter
         lifecycleScope.launch {
             viewModel.articles.collectLatest { adapter.submitData(it) }

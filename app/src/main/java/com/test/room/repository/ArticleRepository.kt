@@ -6,5 +6,4 @@ import kotlinx.coroutines.flow.Flow
 
 interface ArticleRepository {
     fun getArticles(): Flow<PagingData<Article>>
-    fun clearArticles()
 }

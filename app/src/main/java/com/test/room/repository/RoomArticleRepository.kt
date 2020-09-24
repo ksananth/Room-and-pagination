@@ -14,10 +14,6 @@ class RoomArticleRepository(private val db: AppDatabase) : ArticleRepository {
             db.articlesDao().getAll()
         }.flow
 
-    override fun clearArticles() {
-        db.articlesDao().nukeTable()
-    }
-
     companion object {
         const val pageSize = 50
         const val maxSize = 200
