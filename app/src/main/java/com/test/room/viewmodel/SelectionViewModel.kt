@@ -1,15 +1,19 @@
 package com.test.room.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.test.room.R
 import com.test.room.datastore.SettingsManager
 import com.test.room.datastore.UiMode
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class SelectionViewModel(private val settingsManager: SettingsManager) : ViewModel() {
 
+
+    lateinit var uiModeFlow: Flow<UiMode>
 
     fun roomDatabaseSelected(findNavController: NavController) {
         findNavController.navigate(R.id.action_selectionFragment_to_roomFragment)
@@ -24,5 +28,9 @@ class SelectionViewModel(private val settingsManager: SettingsManager) : ViewMod
         viewModelScope.launch {
             settingsManager.setUiMode(type)
         }
+    }
+
+    fun onViewCreated() {
+        uiModeFlow = settingsManager.getUiMode()
     }
 }
