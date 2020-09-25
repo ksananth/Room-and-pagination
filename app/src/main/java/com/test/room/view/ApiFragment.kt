@@ -2,6 +2,7 @@ package com.test.room.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -31,6 +32,7 @@ class ApiFragment : Fragment(R.layout.fragment_list) {
         adapter = ApiArticleAdapter()
         articleRecycleView.adapter = adapter
         viewModel.getArticles().observe(viewLifecycleOwner, Observer { this.updateList(it) })
+        viewModel.error().observe(viewLifecycleOwner, Observer { this.showError(it) })
         viewModel.progressBarVisibility.observe(viewLifecycleOwner, Observer {
             progressBar.visibility = it
         })
@@ -38,6 +40,10 @@ class ApiFragment : Fragment(R.layout.fragment_list) {
         lifecycleScope.launch {
             viewModel.onViewCreated()
         }
+    }
+
+    private fun showError(error: String) {
+        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
     }
 
     private fun updateList(list: List<Article>) {
