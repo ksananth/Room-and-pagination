@@ -32,5 +32,9 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
         button2.setOnClickListener {
             viewModel.apiSelected(findNavController())
         }
+
+        themeMode.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.onThemeChanged(isChecked)
+        }
     }
 }
