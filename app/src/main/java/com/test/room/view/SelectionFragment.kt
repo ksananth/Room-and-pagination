@@ -2,6 +2,7 @@ package com.test.room.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -49,9 +50,11 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
 
     private fun onDarkMode() {
         themeMode.isChecked = true
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
     }
 
     private fun onLightMode() {
         themeMode.isChecked = false
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 }
